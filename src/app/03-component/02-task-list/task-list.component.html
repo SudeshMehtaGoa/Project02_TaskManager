@@ -1,0 +1,61 @@
+<!-- task list HTML -->
+<div class="container-fluid">
+    <div class="row">
+        <div>
+            <h1>List of Tasks</h1>
+            <div class="table-resposive">
+                <table class="table table-filter table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-1">#</th>
+                            <th class="col-xs-2">Task Name</th>
+                            <th class="col-xs-2">Status</th>
+                            <th class="col-xs-2">Completion Date</th>
+                            <th class="col-xs-5">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+<!-- Usage of *ngFor and User defined Directive linked with passing value  appRowHeighlighter ratingValue={{movieDetail?.movieRating}}> -->
+                        <tr *ngFor="let taskDetail of taskList;let i = index" appRowHeighlighter taskCompletionDate={{taskDetail?.taskCompletionDate}}> 
+                            <td>
+                                {{i + 1}}
+                            </td>
+                            <td>
+                                <div>{{taskDetail?.taskName}}</div>
+                            </td>
+                            <td>
+<!--Usage of *ngIf and show proper status -->
+                                <div *ngIf="taskDetail?.taskStatus==1">
+                                    <span>Open</span>
+                                </div>
+                                <div *ngIf="taskDetail?.taskStatus==2">
+                                    <span>In-Progress</span>
+                                </div>
+                                <div *ngIf="taskDetail?.taskStatus==3">
+                                    <span>Done</span>
+                                </div>
+                                <div *ngIf="taskDetail?.taskStatus==4">
+                                    <span>Closed</span>
+                                </div>
+                                <div *ngIf="taskDetail?.taskStatus==5">
+                                    <span>Re-Open</span>
+                                </div>
+                            </td>
+                            <td>
+                                {{taskDetail?.taskCompletionDate}}
+                            </td>
+                            <td>
+<!-- Movie description is not present then show N/A -->
+                                <div *ngIf="!taskDetail?.taskDescription">N/A</div>
+                                <div *ngIf="taskDetail?.taskDescription"> 
+                                    <div *ngIf="taskDetail?.taskDescription.length>0">{{taskDetail?.taskDescription}}</div>
+                                    <div *ngIf="taskDetail?.taskDescription.length==0">N/A</div> 
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

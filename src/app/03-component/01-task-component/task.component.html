@@ -1,0 +1,94 @@
+<!-- Add Task component -->
+<section id="task">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- On left side of screen show Add Task input box -->
+            <div class="col-md-3" style="background-color:#563d7c;">
+                <div class="form-wrap">
+                    <h1>Add a Task</h1>
+                    <h4 class="h4Special">(Using Reactive Form)</h4>
+                    <form [formGroup]="myForm" novalidate autocomplete="off" (ngSubmit)="addTask(myForm.value,myForm.valid)">
+
+                        <!-- Task Name -->
+                        <div class="form-group">
+                            <label for="TaskName">Enter Task Name:</label>
+                            <input type="text" class="form-control" formControlName="taskName" name="taskName" 
+                                    placeholder="Enter the Task Name">
+
+                            <div *ngIf="myForm.controls['taskName'].errors && (myForm.controls['taskName'].dirty || myForm.controls['taskName'].touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="myForm.controls['taskName'].hasError('required')">
+                                    Name is required.
+                                </div>
+                                <div *ngIf="myForm.controls['taskName'].hasError('minlength')">
+                                    Please enter atleast 2 characeters.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Task Status -->
+                        <div class="form-group">
+                            <label for="taskStatus">Enter Task Status:</label>
+                            <select class="txt-box" name="taskStatus" formControlName="taskStatus" class="form-control">
+                                <option [value]="null" [disabled]="true">Select Status</option>
+                                <option *ngFor="let status of taskStatusArray" [ngValue]="status.id">
+                                    {{status.status}}
+                                </option>
+                            </select>
+
+                            <div *ngIf="myForm.controls['taskStatus'].errors && (myForm.controls['taskStatus'].dirty || myForm.controls['taskStatus'].touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="myForm.controls['taskStatus'].hasError('required')">
+                                    Status is required.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Task Description -->
+                        <div class="form-group">
+                            <label for="taskDescription">Enter Task Description:</label>
+                            <input type="text" class="form-control" formControlName="taskDescription" name="taskDescription" 
+                            placeholder="Enter Task Description">
+                        </div>
+                        
+                        <!-- Task Completion Date  -->
+                        <div class="form-group">
+                            <label for="Marks">Enter Task Completion Date:</label>
+                            <input type="date" class="form-control" formControlName="taskCompletionDate" 
+                             name="taskCompletionDate" placeholder="Enter Date">
+
+                            <div *ngIf="myForm.controls['taskCompletionDate'].errors && (myForm.controls['taskCompletionDate'].dirty || myForm.controls['taskCompletionDate'].touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="myForm.controls['taskCompletionDate'].hasError('required')">
+                                    Completion Date is required field.
+                                </div>
+                                <div [hidden]="!refMovieReleaseDate.errors.pattern">
+                                    Please enter MM/DD/YYYY.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Submit button -->
+                        <input type="submit" id="btn-submit" class="btn btn-success btn-lg btn-block" value="Add" [disabled]="myForm.invalid">
+                        <!-- Form reset button -->
+                        <input type="button" id="btn-reset" class="btn btn-info btn-lg btn-block" value="Reset" (click)="resetForm()">
+                    </form>
+                </div>
+                <br>
+                <!-- /.form-wrap -->
+            </div>
+            <!-- /.col-md-3 -->
+            <!-- On right side of screen show Task List -->
+            <div class="col-md-9" style="background-color:#f0c36d;">
+                <div *ngIf="taskArray.length > 0">
+                    <!-- Pass TasksArray to Movie List component -->
+                    <task-list [taskList]="taskArray"></task-list>
+                </div>
+                <div *ngIf="!(taskArray.length > 0)">
+                    <h1>Hurray! No Task Available!!</h1>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>

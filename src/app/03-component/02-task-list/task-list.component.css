@@ -1,0 +1,23 @@
+/* CSS  for task list */
+.table-striped>tbody>tr:nth-child(even)>td,
+.table-striped>tbody>tr:nth-child(even)>th {
+	background-color: #0275d8;
+    color: white;
+    font-size: 20px;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+	background-color: whitesmoke;
+    font-size: 20px;
+}
+h1{
+    text-align: center;
+    background-color:#563d7c;
+    color:white;
+    font-weight :300;
+    margin-top:2px;
+}
+a {
+    color: darkred;
+}
