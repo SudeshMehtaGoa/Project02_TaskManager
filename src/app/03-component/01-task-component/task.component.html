@@ -62,7 +62,7 @@
                                 <div *ngIf="myForm.controls['taskCompletionDate'].hasError('required')">
                                     Completion Date is required field.
                                 </div>
-                                <div [hidden]="!refMovieReleaseDate.errors.pattern">
+                                <div [hidden]="!myForm.controls['taskCompletionDate'].errors.pattern">
                                     Please enter MM/DD/YYYY.
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
             <!-- On right side of screen show Task List -->
             <div class="col-md-9" style="background-color:#f0c36d;">
                 <div *ngIf="taskArray.length > 0">
-                    <!-- Pass TasksArray to Movie List component -->
+                    <!-- Pass TasksArray to Task List component -->
                     <task-list [taskList]="taskArray"></task-list>
                 </div>
                 <div *ngIf="!(taskArray.length > 0)">

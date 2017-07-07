@@ -11,9 +11,6 @@ import { logService } from 'app/01-service/00-log.service';
 import { taskService } from 'app/01-service/01-task.service';
 import { taskStatusService } from 'app/01-service/02-taskstatus.service';
 
-/* Need for Custom Validation */
-import { Observable } from "rxjs/Rx"
-
 @Component({
   selector: 'task-root',
   templateUrl: './task.component.html',

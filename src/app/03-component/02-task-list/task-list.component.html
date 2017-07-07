@@ -15,7 +15,7 @@
                         </tr>
                     </thead>
                     <tbody>
-<!-- Usage of *ngFor and User defined Directive linked with passing value  appRowHeighlighter ratingValue={{movieDetail?.movieRating}}> -->
+<!-- Usage of *ngFor and User defined Directive linked with passing value -->
                         <tr *ngFor="let taskDetail of taskList;let i = index" appRowHeighlighter taskCompletionDate={{taskDetail?.taskCompletionDate}}> 
                             <td>
                                 {{i + 1}}
@@ -45,7 +45,7 @@
                                 {{taskDetail?.taskCompletionDate}}
                             </td>
                             <td>
-<!-- Movie description is not present then show N/A -->
+<!-- Task description is not present then show N/A -->
                                 <div *ngIf="!taskDetail?.taskDescription">N/A</div>
                                 <div *ngIf="taskDetail?.taskDescription"> 
                                     <div *ngIf="taskDetail?.taskDescription.length>0">{{taskDetail?.taskDescription}}</div>
